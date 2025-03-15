@@ -1,0 +1,14 @@
+.btn {
+    padding: 12px;
+    font-size: 1rem;
+    background-color: rgb(26, 62, 121);
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.btn-right{
+    margin-right: 1rem;
+}

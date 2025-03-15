@@ -1,0 +1,21 @@
+.main {
+    padding-left: 240px;
+    min-height: 100vh;
+    background-color: rgb(16 36 70);
+    color: white;
+}
+
+.main header {
+    background-color: rgb(26, 62, 121);
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    box-shadow: 0px 0px 10px 5px rgb(9, 23, 44);
+}
+
+.header-image{
+    align-self: center;
+    margin-left: 10px;
+    margin-right: auto;
+}
