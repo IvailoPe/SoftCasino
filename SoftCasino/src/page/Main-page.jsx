@@ -1,6 +1,6 @@
-import styles from "./Main-wrapper-styles.module.css"
-
 import Button from "../components/Button/Button";
+import styles from "./Main-page-styles.module.css"
+
 
 export default function Main({children}) {
   return (
