@@ -1,5 +1,8 @@
 .currentUserComment{
     align-self: flex-end;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-message-wrapper{

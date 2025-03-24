@@ -1,0 +1,81 @@
+.main-profile-wrapper {
+  height: calc(100vh - 64.89px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.profile-wrapper {
+  height: 90%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 4px rgb(40, 100, 196);
+  display: flex;
+  flex-direction: column;
+  color: black;
+  padding: 15px;
+  gap: 10px;
+  color: white;
+}
+
+.profile-main {
+  flex-grow: 1;
+  display: flex;
+  gap: 15px;
+}
+
+.profile-top {
+  flex-basis: 50%;
+  color: white;
+  display: flex;
+  box-shadow: 0px 0px 10px 2px rgb(23, 57, 109);
+  background-color: rgb(26, 62, 121);
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.3rem;
+}
+
+.profile-img {
+  border-radius: 100%;
+}
+
+.profile-bottom {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px 2px rgb(23, 57, 109);
+  background-color: rgb(26, 62, 121);
+  color: white;
+  border-radius: 10px;
+  align-items: center;
+  padding: 20px;
+  justify-content: space-evenly;
+}
+
+.profile-rank {
+  font-weight: 900;
+  border: 2px solid rgb(16 36 70);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.game-wrapper {
+  overflow: auto;
+  padding: 10px;
+  background-color: rgb(26, 62, 121);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px rgb(23, 57, 109);
+}
+
+.p-fav-games {
+  margin-bottom: 14px;
+}
+
+.game-section {
+  display: flex;
+  gap: 20px;
+  overflow: auto;
+}

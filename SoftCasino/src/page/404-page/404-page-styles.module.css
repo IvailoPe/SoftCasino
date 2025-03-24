@@ -1,0 +1,12 @@
+.main-404-wrapper{
+    height: 100vh;
+    background: radial-gradient(circle, rgba(11,58,96,1) 33%, rgba(24,84,133,1) 46%, rgba(28,93,203,1) 64%, rgba(32,68,126,1) 78%);
+    display: flex;
+    align-items: center;
+    width: calc(100vw - 240px);
+    position: absolute;
+    left: 240px;
+    z-index: -1000;
+    justify-content: center;
+    background-position: center;
+}

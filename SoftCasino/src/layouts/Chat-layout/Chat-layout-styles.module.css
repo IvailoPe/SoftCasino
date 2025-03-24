@@ -1,8 +1,9 @@
 
 .main-chat-wrapper{
-    height:calc(100vh - 64px);
+    height:calc(100vh - 64.89px);
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .chat-wrapper{
@@ -10,8 +11,7 @@
     padding: 15px 15px 15px 15px;
     overflow: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: column-reverse;
     gap: 20px;
 }
 

@@ -1,26 +1,136 @@
-import styles from "./Aside-header-styles.module.css"
+import { useContext } from "react";
+import styles from "./Aside-header-styles.module.css";
+
+import { NavLink } from "react-router";
+import { authContext } from "../../context/Auth-context";
 
 export default function Aside() {
+  const auth = useContext(authContext);
+
   return (
     <aside className={styles.aside}>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
-          <li className={styles.li}>
+          <li className={styles.specialLi}>
             <img width="140" height="140" src="../../public/logo.png" alt="" />
           </li>
         </ul>
         <ul className={styles.ul}>
-          <li className={styles.li}>Home</li>
-          <li className={styles.li}>Favourite games</li>
-          <li className={styles.li}>Shop</li>
-          <li className={styles.li}>Live chat</li>
-          <li className={styles.li}>Add funds</li>
-          <li className={styles.li}>About us</li>
+          <li className={styles.li}>
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? styles.activeLink : styles.inactiveLink;
+              }}
+              to={"/home"}
+            >
+              Home
+            </NavLink>
+          </li>
+          {auth.currentUserLogged.isLogged && (
+            <li className={styles.li}>
+              <NavLink
+                className={({ isActive }) => {
+                  return isActive ? styles.activeLink : styles.inactiveLink;
+                }}
+                to={"/profile"}
+              >
+                Profile
+              </NavLink>
+            </li>
+          )}
+          <li className={styles.li}>
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? styles.activeLink : styles.inactiveLink;
+              }}
+              to={"/shop"}
+            >
+              Shop
+            </NavLink>
+          </li>
+          {auth.currentUserLogged?.username === "Admin" && (
+            <li className={styles.li}>
+              <NavLink
+                className={({ isActive }) => {
+                  return isActive ? styles.activeLink : styles.inactiveLink;
+                }}
+                to={"/item/create"}
+              >
+                Add Item
+              </NavLink>
+            </li>
+          )}
+          {auth.currentUserLogged.isLogged && (
+            <li className={styles.li}>
+              <NavLink
+                className={({ isActive }) => {
+                  return isActive ? styles.activeLink : styles.inactiveLink;
+                }}
+                to={"/chat"}
+              >
+                Live chat
+              </NavLink>
+            </li>
+          )}
+          {auth.currentUserLogged.isLogged && (
+            <li className={styles.li}>
+              <NavLink
+                className={({ isActive }) => {
+                  return isActive ? styles.activeLink : styles.inactiveLink;
+                }}
+                to={"/add-funds"}
+              >
+                Add funds
+              </NavLink>
+            </li>
+          )}
+          <li className={styles.li}>
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? styles.activeLink : styles.inactiveLink;
+              }}
+              to={"/about-us"}
+            >
+              About us
+            </NavLink>
+          </li>
         </ul>
         <ul className={styles.ul}>
-          <li className={styles.li}>Login</li>
-          <li className={styles.li}>Register</li>
-          <li className={styles.li}>Contact us</li>
+          {auth.currentUserLogged.isLogged === false ? (
+            <>
+              <li className={styles.li}>
+                <NavLink
+                  className={({ isActive }) => {
+                    return isActive ? styles.activeLink : styles.inactiveLink;
+                  }}
+                  to={"/login"}
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li className={styles.li}>
+                <NavLink
+                  className={({ isActive }) => {
+                    return isActive ? styles.activeLink : styles.inactiveLink;
+                  }}
+                  to={"/register"}
+                >
+                  Register
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            ""
+          )}
+          <li className={styles.li}>
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? styles.activeLink : styles.inactiveLink;
+              }}
+            >
+              Contact us
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </aside>

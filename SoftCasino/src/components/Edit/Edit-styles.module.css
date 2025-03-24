@@ -1,0 +1,14 @@
+.edit-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.input{
+    font-size: 1.1rem;
+}
+
+.input:not(:focus) + p{
+    display: block;
+}

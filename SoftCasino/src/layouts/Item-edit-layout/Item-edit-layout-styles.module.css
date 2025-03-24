@@ -1,0 +1,52 @@
+.item-edit-wrapper{
+    height:calc(100vh - 64.89px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.form-wrapper{
+    height: 90%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 4px rgb(40, 100, 196);
+    display: flex;
+    align-items: center;
+    color: black;
+    justify-content: center;
+}
+
+.edit-form{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: stretch;
+}
+
+.edit-textarea{
+    resize: none;
+}
+
+.form-title{
+    text-align: center;
+}
+
+.input{
+    font-size: 1.2rem;
+}
+
+.inputs-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.input:not(:focus) + p{
+    display: block;
+}
+
+.create-textarea:not(:focus) + p{
+    display: block;
+}
