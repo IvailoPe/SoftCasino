@@ -7,15 +7,23 @@ import styles from "./Shop-layout-styles.module.css";
 
 export default function ShopLayout() {
   const [items] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/items",null, false,[]);
+  const [casinoData] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/casino/sold/items",null, false);
+  const [profileData] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/users/profile",null, true);
+  
+  
+  const itemsQuantity = items.reduce((acumulator, nextValue) => {
+     return acumulator + nextValue.quantity
+  },0)
+  
   const navigate = useNavigate();
 
   return (
     <section className={styles["main-shop-wrapper"]}>
       <div className={styles["shop-wrapper"]}>
         <div className={styles["shop-top"]}>
-          <Information text="Items quantity: 2355"></Information>
-          <Information text="Sold items: 1000"></Information>
-          <Information text="Owned items: 0"></Information>
+          <Information text={`Items quantity: ${itemsQuantity}`}></Information>
+          <Information text={`Sold items: ${casinoData.soldItems}`}></Information>
+          <Information text={`Owned items: ${profileData.ordersMade}`}></Information>
         </div>
         <div className={styles["shop-main"]}>
           {items.map((item) => {

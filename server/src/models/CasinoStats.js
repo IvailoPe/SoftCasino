@@ -2,7 +2,7 @@ import { Schema, mongoose } from 'mongoose';
 
 const userSchema = new Schema({
     itemsQuantity: {
-        type: String,
+        type: Number,
         required: true,
     },
     soldItems:{

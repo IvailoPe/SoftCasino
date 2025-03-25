@@ -58,9 +58,10 @@ itemController.put('/:id',authMiddleware, async (req, res) => {
 itemController.post('/buy/:id',authMiddleware, async (req, res) => {
     const { quantity } = req.body;
     const { id: itemId } = req.params;
+    
     try {
-        let itemId = await itemService.buyItem(req.user.id, itemId, quantity);
-        res.json(itemId)
+        await itemService.buyItem(req.user.id, itemId, quantity);
+        res.json({ message: "success" })
     } catch (err) {
         res.json({ error: err.message });
     }

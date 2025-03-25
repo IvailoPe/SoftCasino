@@ -1,6 +1,7 @@
 import Item from "../models/Item.js"
 import User from "../models/User.js"
 import SingleItem from "../models/SingleItem.js"
+import CasinoStatsService from "./casinoStatsServices.js"
 
 const userService = {
     async create(title, description, url, quantity, price) {
@@ -44,6 +45,7 @@ const userService = {
         user.items.push(singleItem);
         user.ordersMade++;
         user.money = Number(user.money) - (quantity * Number(item.price));
+        await CasinoStatsService.increaseSoldItems(quantity)
         await singleItem.save()
         await item.save();
         await user.save()
