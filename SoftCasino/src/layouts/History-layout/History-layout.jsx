@@ -1,17 +1,43 @@
+import { useNavigate } from "react-router";
 import Information from "../../components/Information/Information";
 import Item from "../../components/Item/Item";
-import styles from "./History-layout-styles.module.css"
+import useFetch from "../../hooks/useFetchHook";
+import styles from "./History-layout-styles.module.css";
 
 export default function HistoryLayout() {
+  const [items] = useFetch(
+    "GET",
+    import.meta.env.VITE_API_ADRESS + "/items/user/items",
+    null,
+    false,
+    []
+  );
+  const [profileData] = useFetch(
+    "GET",
+    import.meta.env.VITE_API_ADRESS + "/users/profile",
+    null,
+    true
+  );
+
+  const navigate = useNavigate();
+
   return (
     <section className={styles["main-history-wrapper"]}>
       <div className={styles["history-shop-wrapper"]}>
         <div className={styles["history-shop-top"]}>
-          <Information text={"Purchases: 100"} h3={true}></Information>
+          <Information
+            text={`Purchases: ${profileData.ordersMade}`}
+            h3={true}
+          ></Information>
         </div>
         <div className={styles["history-shop-main"]}>
-          <Item link={"https://www.bigjohnson.com/cdn/shop/products/BarAndCasino_FB.jpg?v=1650028783"}></Item>
-          <Item link={"https://www.bigjohnson.com/cdn/shop/products/BarAndCasino_FB.jpg?v=1650028783"}></Item>
+          {items.map((item) => {
+            return (
+              <Item handleClick={() => {
+                navigate("/bought/item/" + item._id)
+              }} key={item._id} link={item.link} />
+            );
+          })}
         </div>
       </div>
     </section>

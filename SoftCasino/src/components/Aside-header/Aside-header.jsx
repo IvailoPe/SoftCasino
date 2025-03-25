@@ -89,9 +89,9 @@ export default function Aside() {
               className={({ isActive }) => {
                 return isActive ? styles.activeLink : styles.inactiveLink;
               }}
-              to={"/about-us"}
+              to={"/shop/history"}
             >
-              About us
+              Purchases history
             </NavLink>
           </li>
         </ul>

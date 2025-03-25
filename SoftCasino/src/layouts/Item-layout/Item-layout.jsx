@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useOutletContext, useParams } from "react-router";
 import Button from "../../components/Button/Button";
 import Information from "../../components/Information/Information";
 
@@ -12,6 +12,7 @@ import requester from "../../api/requester";
 
 export default function ItemLayout() {
   const navigate = useNavigate();
+  const setReset = useOutletContext();
   const params = useParams();
   const [item] = useFetch(
     "GET",
@@ -27,14 +28,9 @@ export default function ItemLayout() {
     true
   );
   const [buyAmount, setBuyAmount] = useState(0);
-  
-  const canBuy = profileData.money / item.price
 
-  console.log(canBuy);
-  console.log(buyAmount);
-  
-  
-  
+  const canBuy = profileData.money / item.price;
+
   return (
     <section className={styles["main-item-wrapper"]}>
       <div className={styles["item-wrapper"]}>
@@ -58,7 +54,7 @@ export default function ItemLayout() {
                     if (prevBuyAmount > 0) {
                       return prevBuyAmount - 1;
                     }
-                    return 0
+                    return 0;
                   });
                 }}
                 className={styles["quantity-btn"]}
@@ -67,7 +63,7 @@ export default function ItemLayout() {
               </button>
               <span className={styles["quantity-value"]}>{buyAmount}</span>
               <button
-                disabled={canBuy < buyAmount + 1}
+                disabled={canBuy < buyAmount + 1 || buyAmount === item.quantity}
                 onClick={() => {
                   setBuyAmount((prevBuyAmount) => {
                     return prevBuyAmount + 1;
@@ -106,7 +102,25 @@ export default function ItemLayout() {
             )}
             {auth.currentUserLogged.username !== "Admin" && (
               <>
-                <Button dissabled={buyAmount === 0} text="Buy"></Button>
+                <Button
+                  onClick={async () => {
+                     await requester(
+                      "POST",
+                      import.meta.env.VITE_API_ADRESS +
+                        "/items/buy/" +
+                        item._id,
+                      {
+                        quantity: buyAmount,
+                      }
+                    );
+                    setReset((prevState) => {
+                      return !prevState;
+                    });                    
+                    navigate("/shop/history")
+                  }}
+                  dissabled={buyAmount === 0}
+                  text="Buy"
+                ></Button>
               </>
             )}
           </div>

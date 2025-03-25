@@ -16,6 +16,7 @@ import { Route, Routes } from "react-router";
 import P404 from "./page/404-page/404-page";
 import AuthProvider from "./context/Auth-context";
 import ItemCreateLayout from "./layouts/Item-create-layout/Item-create-layout";
+import BoughtItemLayout from "./layouts/Bought-item-layout/Bought-item-layout";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="shop" element={<ShopLayout />} />
             <Route path="shop/history" element={<HistoryLayout />} />
             <Route path="item/:id" element={<ItemLayout />} />
+            <Route path="bought/item/:id" element={<BoughtItemLayout />} />
             <Route path="item/edit/:id" element={<ItemEditLayout />} />
             <Route path="item/create" element={<ItemCreateLayout />} />
             <Route path="profile" element={<ProfileLayout />} />

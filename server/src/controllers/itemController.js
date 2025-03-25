@@ -55,4 +55,35 @@ itemController.put('/:id',authMiddleware, async (req, res) => {
     }
 });
 
+itemController.post('/buy/:id',authMiddleware, async (req, res) => {
+    const { quantity } = req.body;
+    const { id: itemId } = req.params;
+    try {
+        let itemId = await itemService.buyItem(req.user.id, itemId, quantity);
+        res.json(itemId)
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
+itemController.get('/user/items',authMiddleware, async (req, res) => {
+    try {
+        const {items} = await itemService.getAllUserItems(req.user.id);
+        res.json(items)
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
+itemController.get('/user/items/:id',authMiddleware, async (req, res) => {
+    const { id: itemId } = req.params;
+    
+    try {
+        const item = await itemService.getSingleUserItem(req.user.id, itemId);
+        res.json(item)
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
 export default itemController

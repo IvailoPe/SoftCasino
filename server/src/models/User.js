@@ -11,30 +11,31 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    gamesPlayes:{
-        type:Number,
-        required:true
+    gamesPlayes: {
+        type: Number,
+        required: true
     },
-    rank:{
-        type:Number,
-        required:true
+    rank: {
+        type: Number,
+        required: true
     },
-    rankBar:{
-        type:Number,
-        required:true
+    rankBar: {
+        type: Number,
+        required: true
     },
-    money:{
-        type:Number,
-        required:true
+    money: {
+        type: Number,
+        required: true
     },
-    ordersMade:{
-        type:Number,
-        required:true
+    ordersMade: {
+        type: Number,
+        required: true
     },
-    profilePicture:{
-        type:String,
-        required:true
-    }
+    profilePicture: {
+        type: String,
+        required: true
+    },
+    items: [{ type: Schema.Types.ObjectId, ref: 'SingleItem' }]
 }, { timestamps: true });
 
 userSchema.post("validate", function (doc) {
