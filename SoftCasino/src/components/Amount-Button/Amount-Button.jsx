@@ -1,6 +1,6 @@
-import styles from "./Button-styles.module.css";
+import styles from "./Amount-Button-styles.module.css";
 
-export default function Button({
+export default function AmountButton({
   text,
   specialClass,
   dissabled,

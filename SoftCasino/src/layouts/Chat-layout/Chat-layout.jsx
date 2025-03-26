@@ -20,7 +20,7 @@ export default function ChatLayout() {
 
   if (messages.length - 1 === 30) {
     let newMessages = JSON.parse(JSON.stringify(messages));
-    newMessages.shift();
+    newMessages.pop();
     setMessages([...newMessages]);
   }
 

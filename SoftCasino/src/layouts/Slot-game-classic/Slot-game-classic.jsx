@@ -1,0 +1,190 @@
+import { useRef, useState } from "react";
+import Button from "../../components/Button/Button";
+import SlotImage from "../../components/Slot-image/Slot-image";
+import img7 from "../../constant/symbols/7.png";
+
+import styles from "./Slot-game-classic-styles.module.css";
+import {
+  determineIfWin,
+  randomSymbols,
+  startGameRotating,
+} from "../../utils/slotUtils";
+import { symbolsNameMapping } from "../../constant/slotConstanst";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import AmountButton from "../../components/Amount-Button/Amount-Button";
+
+export default function SlotGameClassic() {
+  const isAuto = useRef(false);
+  const isAutoRef = useRef();
+  const [isAutoBtn, setIsAutoBtn] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [betAmount, setBetAmount] = useState(0.25);
+
+  const SpinBtnRef = useRef();
+
+  const slotImage1 = useRef();
+  const slotImage2 = useRef();
+  const slotImage3 = useRef();
+  const slotImage4 = useRef();
+  const slotImage5 = useRef();
+
+  const slotImage6 = useRef();
+  const slotImage7 = useRef();
+  const slotImage8 = useRef();
+  const slotImage9 = useRef();
+  const slotImage10 = useRef();
+
+  const slotImage11 = useRef();
+  const slotImage12 = useRef();
+  const slotImage13 = useRef();
+  const slotImage14 = useRef();
+  const slotImage15 = useRef();
+
+  return (
+    <section className={styles.gameMainWrapper}>
+      <div className={styles.gameWrapper}>
+        <div className={styles.gameTop}>
+          <div className={styles.symbolsContainer}>
+            <SlotImage imgSrc={img7} reference={slotImage1} />
+            <SlotImage imgSrc={img7} reference={slotImage2} />
+            <SlotImage imgSrc={img7} reference={slotImage3} />
+            <SlotImage imgSrc={img7} reference={slotImage4} />
+            <SlotImage imgSrc={img7} reference={slotImage5} />
+          </div>
+          <div className={styles.symbolsContainer}>
+            <SlotImage imgSrc={img7} reference={slotImage6} />
+            <SlotImage imgSrc={img7} reference={slotImage7} />
+            <SlotImage imgSrc={img7} reference={slotImage8} />
+            <SlotImage imgSrc={img7} reference={slotImage9} />
+            <SlotImage imgSrc={img7} reference={slotImage10} />
+          </div>
+          <div className={styles.symbolsContainer}>
+            <SlotImage imgSrc={img7} reference={slotImage11} />
+            <SlotImage imgSrc={img7} reference={slotImage12} />
+            <SlotImage imgSrc={img7} reference={slotImage13} />
+            <SlotImage imgSrc={img7} reference={slotImage14} />
+            <SlotImage imgSrc={img7} reference={slotImage15} />
+          </div>
+        </div>
+        <div className={styles.gameBottom}>
+          <div className={styles.gameSwitchAmount}>
+            <div>
+              <FontAwesomeIcon
+                onClick={() => {
+                  setBetAmount((prevBetAmount) => {
+                    if (prevBetAmount > 0.25) {
+                      return prevBetAmount - 0.25;
+                    }
+                    return prevBetAmount;
+                  });
+                }}
+                icon={faMinus}
+              />
+            </div>
+            <AmountButton text={`${betAmount.toFixed(2)}$`} />
+            <div>
+              <FontAwesomeIcon
+                onClick={() => {
+                  setBetAmount((prevBetAmount) => {
+                    if (prevBetAmount < 3) {
+                      return prevBetAmount + 0.25;
+                    }
+                    return prevBetAmount;
+                  });
+                }}
+                icon={faPlus}
+              />
+            </div>
+          </div>
+          <div className={styles.gameLastWinWrapper}>
+            <span>Last win</span>
+            <span>2.50</span>
+          </div>
+          <input
+            type="text"
+            placeholder="125$"
+            className={styles.inputAmount}
+          />
+          <Button
+            dissabled={isPlaying}
+            reference={SpinBtnRef}
+            onClick={() => {
+              setIsPlaying(true);
+              let rows = [];
+
+              const symbolsRefs = [
+                slotImage1,
+                slotImage2,
+                slotImage3,
+                slotImage4,
+                slotImage5,
+                slotImage6,
+                slotImage7,
+                slotImage8,
+                slotImage9,
+                slotImage10,
+                slotImage11,
+                slotImage12,
+                slotImage13,
+                slotImage14,
+                slotImage15,
+              ];
+
+              randomSymbols(symbolsRefs);
+
+              for (let index = 0; index < 15; index += 5) {
+                let arrayOfImages = symbolsRefs
+                  .slice(index, index + 5)
+                  .map((value, index) => {
+                    return [
+                      value.current,
+                      index,
+                      symbolsNameMapping[value.current.src.substring(21)],
+                    ];
+                  });
+                rows.push(arrayOfImages);
+              }
+
+              new Promise((resolve) => {
+                startGameRotating(rows[0], 80, resolve);
+              }).then(() => {
+                new Promise((resolve) => {
+                  startGameRotating(rows[1], 80, resolve);
+                }).then(() => {
+                  new Promise((resolve) => {
+                    startGameRotating(rows[2], 80, resolve);
+                  }).then(() => {
+                    determineIfWin(rows);
+                    setIsPlaying(false);
+                  });
+                });
+              });
+            }}
+            text={"Spin"}
+          />
+          <Button
+            dissabled={isAuto.current === false && isPlaying === true}
+            autoPlay={isAutoBtn}
+            onClick={() => {
+              setIsAutoBtn(true);
+              isAuto.current = !isAuto.current;
+              if (isAuto.current && isPlaying === false) {
+                isAutoRef.current = setInterval(() => {
+                  if (!isPlaying) {
+                    SpinBtnRef.current.click();
+                  }
+                }, 0);
+              }
+              if (isAuto.current === false) {
+                clearInterval(isAutoRef.current);
+                setIsAutoBtn(false);
+              }
+            }}
+            text="Auto play"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
