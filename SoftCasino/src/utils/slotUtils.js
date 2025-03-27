@@ -88,6 +88,8 @@ export function determineIfWin(rows) {
         }
     }
 
-
+    
     console.log(winningSymbols);
+
+    return winningSymbols
 }

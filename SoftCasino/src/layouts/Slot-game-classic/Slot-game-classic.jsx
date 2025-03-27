@@ -9,17 +9,25 @@ import {
   randomSymbols,
   startGameRotating,
 } from "../../utils/slotUtils";
-import { symbolsNameMapping } from "../../constant/slotConstanst";
+import {
+  symbolsNameMapping,
+  symbolsNameAmountMapping,
+} from "../../constant/slotConstanst";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AmountButton from "../../components/Amount-Button/Amount-Button";
+import requester from "../../api/requester";
+import { useOutletContext } from "react-router";
 
 export default function SlotGameClassic() {
   const isAuto = useRef(false);
   const isAutoRef = useRef();
+  const {setReset, money} = useOutletContext();
   const [isAutoBtn, setIsAutoBtn] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [betAmount, setBetAmount] = useState(0.25);
+  const [inputBetAmount, setInputBetAmount] = useState("");
+  const [wonAmount, setWonAmount] = useState(0);
 
   const SpinBtnRef = useRef();
 
@@ -99,12 +107,21 @@ export default function SlotGameClassic() {
           </div>
           <div className={styles.gameLastWinWrapper}>
             <span>Last win</span>
-            <span>2.50</span>
+            <span>{wonAmount}</span>
           </div>
           <input
+            disabled={isPlaying}
             type="text"
             placeholder="125$"
             className={styles.inputAmount}
+            value={inputBetAmount}
+            onChange={(e) => {              
+              if(!isNaN(Number(e.currentTarget.value))){
+                if(Number(e.currentTarget.value) < money){
+                  setInputBetAmount(e.currentTarget.value)
+                }
+              }
+            }}
           />
           <Button
             dissabled={isPlaying}
@@ -155,8 +172,48 @@ export default function SlotGameClassic() {
                   new Promise((resolve) => {
                     startGameRotating(rows[2], 80, resolve);
                   }).then(() => {
-                    determineIfWin(rows);
-                    setIsPlaying(false);
+                    const wins = determineIfWin(rows);
+                    let wonAmountFromGame = 0;
+                    let finalBetAmount
+
+                    if(inputBetAmount){
+                      finalBetAmount = inputBetAmount
+                    }
+                    else{
+                      finalBetAmount = betAmount
+                    }
+
+                    wins.forEach((symbol) => {
+                      wonAmountFromGame +=
+                        symbolsNameAmountMapping[symbol] * finalBetAmount +
+                        finalBetAmount;
+                    });
+                  
+                    setWonAmount(Number(wonAmountFromGame.toPrecision(2)));
+                    if (wonAmountFromGame !== 0) {
+                      requester(
+                        "POST",
+                        import.meta.env.VITE_API_ADRESS + "/casino/game/1",
+                        { wonAmount: Number(wonAmountFromGame.toPrecision(2)) }
+                      ).then(() => {
+                        setReset((prevState) => {
+                          return !prevState;
+                        });
+                        setIsPlaying(false);
+                      });
+                    }
+                    else{
+                      requester(
+                        "PUT",
+                        import.meta.env.VITE_API_ADRESS + "/casino/game/1",
+                        { amount: finalBetAmount }
+                      ).then(() => {
+                        setReset((prevState) => {
+                          return !prevState;
+                        });
+                        setIsPlaying(false);
+                      });
+                    }
                   });
                 });
               });

@@ -9,7 +9,7 @@ import Notification from "../../components/Notification/Notification";
 import { useState } from "react";
 
 export default function PayLayout() {
-  const setReset = useOutletContext();
+  const {setReset} = useOutletContext();
   const [notification, setNotification] = useState("");
   const [form, setForm, formSubmitFunction, resetForm] = useForm(
     {

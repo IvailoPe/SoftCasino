@@ -12,7 +12,7 @@ import requester from "../../api/requester";
 
 export default function ItemLayout() {
   const navigate = useNavigate();
-  const setReset = useOutletContext();
+  const {setReset} = useOutletContext();
   const params = useParams();
   const [item] = useFetch(
     "GET",

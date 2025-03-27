@@ -32,3 +32,15 @@ export let symbolsNameMapping = {
     [imgUrl8]: "plum",
     [imgUrl9]: "waterMelon"
 }
+
+export let symbolsNameAmountMapping = {
+    "7":3.00,
+    "apple":1,
+    "diamond":2.50,
+    "grapes":1.90,
+    "lemon":1.80,
+    "coin":2.00,
+    "orange":1.50,
+    "plum":1.50,
+    "waterMelon":1.20
+}

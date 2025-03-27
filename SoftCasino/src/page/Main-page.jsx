@@ -11,7 +11,7 @@ export default function Main() {
   return (
     <main className={styles.main}>
       <MainHeader money={profileData.money}/>
-      <Outlet context={setReset}></Outlet>
+      <Outlet context={{setReset, money:profileData.money}}></Outlet>
     </main>
   );
 }
