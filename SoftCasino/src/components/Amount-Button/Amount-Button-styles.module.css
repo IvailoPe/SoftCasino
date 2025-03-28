@@ -19,3 +19,17 @@
   cursor: not-allowed;
   color: white;
 }
+
+
+.easy{
+  background-color: rgb(56, 126, 56);
+  color: white;
+}
+
+.medium{
+  background-color: rgb(145, 101, 35);
+}
+
+.hard{
+  background-color: rgb(146, 41, 41);
+}

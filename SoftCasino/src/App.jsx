@@ -18,6 +18,7 @@ import AuthProvider from "./context/Auth-context";
 import ItemCreateLayout from "./layouts/Item-create-layout/Item-create-layout";
 import BoughtItemLayout from "./layouts/Bought-item-layout/Bought-item-layout";
 import SlotGameClassic from "./layouts/Slot-game-classic/Slot-game-classic";
+import ArcadeGameClassic from "./layouts/Arcade-game-classic/Arcade-game-classic";
 
 function App() {
   return (
@@ -37,7 +38,8 @@ function App() {
             <Route path="item/create" element={<ItemCreateLayout />} />
             <Route path="profile" element={<ProfileLayout />} />
             <Route path="profile/edit" element={<EditLayout />} />
-            <Route path="slot/test" element={<SlotGameClassic />} />
+            <Route path="slot/game/1" element={<SlotGameClassic />} />
+            <Route path="arcade/game/1" element={<ArcadeGameClassic />} />
           </Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>

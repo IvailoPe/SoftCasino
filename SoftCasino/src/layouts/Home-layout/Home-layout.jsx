@@ -9,13 +9,13 @@ export default function HomeLayout() {
       <section className={styles["arcade-section"]}>
         <h3>Arcade games</h3>
         <section className={styles["game-section"]}>
-          <GameOverview link="https://www.wikihow.com/images/thumb/3/3a/GenericImage_Slot.jpg/460px-GenericImage_Slot.jpg"></GameOverview>
+          <GameOverview link="/arcade/game/1"></GameOverview>
       </section>
       </section>
       <section className={styles["slot-section"]}>
         <h3>Slot games</h3>
         <section className={styles["game-section"]}>
-        <GameOverview link="https://www.wikihow.com/images/thumb/3/3a/GenericImage_Slot.jpg/460px-GenericImage_Slot.jpg"></GameOverview>
+        <GameOverview link="/slot/game/1"></GameOverview>
         </section>
       </section>
     </section>

@@ -177,15 +177,17 @@ export default function SlotGameClassic() {
                     let finalBetAmount
 
                     if(inputBetAmount){
-                      finalBetAmount = inputBetAmount
+                      finalBetAmount = Number(inputBetAmount)
                     }
                     else{
-                      finalBetAmount = betAmount
+                      finalBetAmount = Number(betAmount)
                     }
+
+                    console.log(finalBetAmount);
 
                     wins.forEach((symbol) => {
                       wonAmountFromGame +=
-                        symbolsNameAmountMapping[symbol] * finalBetAmount +
+                        Number(symbolsNameAmountMapping[symbol]) * finalBetAmount +
                         finalBetAmount;
                     });
                   
