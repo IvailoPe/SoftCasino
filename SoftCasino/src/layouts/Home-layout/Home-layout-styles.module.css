@@ -35,6 +35,15 @@
   overflow: auto;
 }
 
+.upperDiv{
+  width: max-content;
+  padding: 15px;
+  align-self: center;
+  border: 3px solid black;
+  background: linear-gradient(284deg, rgba(27, 57, 107, 1) 27%, rgba(38, 92, 135, 1) 54%, rgba(32, 68, 126, 1) 100%);
+  border-radius: 10px;
+}
+
 .game-section::-webkit-scrollbar {
   display: none;
 }

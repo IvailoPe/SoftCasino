@@ -18,8 +18,10 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AmountButton from "../../components/Amount-Button/Amount-Button";
 import requester from "../../api/requester";
 import { useOutletContext } from "react-router";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function SlotGameClassic() {
+  useRouteGuard();
   const isAuto = useRef(false);
   const isAutoRef = useRef();
   const {setReset, money} = useOutletContext();

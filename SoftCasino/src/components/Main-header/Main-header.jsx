@@ -14,6 +14,9 @@ export default function MainHeader({ money }) {
   return (
     <header className={styles.header}>
       <img
+        onClick={() => {
+          navigate("/home")
+        }}
         className={styles["header-image"]}
         width="300"
         height="42"
@@ -38,8 +41,12 @@ export default function MainHeader({ money }) {
       ) : (
         <>
           {" "}
-          <Button text="Login" />
-          <Button specialClass="right" text="Register" />{" "}
+          <Button onClick={() => {
+            navigate("/login")
+          }} text="Login" />
+          <Button onClick={() => {
+            navigate("/register")
+          }} specialClass="right" text="Register" />{" "}
         </>
       )}
     </header>

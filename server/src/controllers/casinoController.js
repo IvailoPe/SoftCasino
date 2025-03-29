@@ -21,4 +21,14 @@ casinoController.put("/game/1",authMiddleware, async (req, res) => {
    res.json({message:"success"})
 })
 
+casinoController.get("/xp",authMiddleware, async (req, res) => {   
+   await CasinoStatsService.increaseXP(req.user.id);
+   res.json({message:"success"})
+})
+
+casinoController.get("/reward",authMiddleware, async (req, res) => {   
+   await CasinoStatsService.getReward(req.user.id);
+   res.json({message:"success"})
+})
+
 export default casinoController

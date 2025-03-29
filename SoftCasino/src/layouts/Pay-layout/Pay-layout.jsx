@@ -7,8 +7,10 @@ import { useOutletContext } from "react-router";
 import styles from "./Pay-layout-styles.module.css";
 import Notification from "../../components/Notification/Notification";
 import { useState } from "react";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function PayLayout() {
+  useRouteGuard();
   const {setReset} = useOutletContext();
   const [notification, setNotification] = useState("");
   const [form, setForm, formSubmitFunction, resetForm] = useForm(

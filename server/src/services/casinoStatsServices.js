@@ -1,3 +1,4 @@
+import { rankProgression, reverseRankProgression, rankPrices } from "../constant/rankConstants.js";
 import CasinoStats from "../models/CasinoStats.js"
 import User from "../models/User.js";
 
@@ -31,6 +32,32 @@ const CasinoStatsService = {
         const user = await User.findById(userId);
         user.money = Number(user.money) - Number(amount);
         await user.save()
+    },
+
+    async increaseXP(userId){
+        const user = await User.findById(userId);
+        
+        
+        user.rankBar += 10;
+        if(reverseRankProgression[user.rankBar] !== user.rank && user.isPriceTaken !== false && reverseRankProgression[user.rankBar] !== undefined){
+            user.isPriceTaken = false;
+            user.rank = reverseRankProgression[user.rankBar];
+        }
+        else if(reverseRankProgression[user.rankBar] !== user.rank && reverseRankProgression[user.rankBar] !== undefined){    
+            user.rankBar -= 10;
+        }
+        await user.save()
+    },
+
+    async getReward(userId){
+        const user = await User.findById(userId);
+        
+        if(user.isPriceTaken === false){
+            user.isPriceTaken = true;
+            user.money += rankPrices[user.rank]
+        }
+
+        await user.save() 
     }
 }
 

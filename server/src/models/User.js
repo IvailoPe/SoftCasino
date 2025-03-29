@@ -23,6 +23,10 @@ const userSchema = new Schema({
         type: Number,
         required: true
     },
+    isPriceTaken:{
+        type: Boolean,
+        required: true
+    },
     money: {
         type: Number,
         required: true

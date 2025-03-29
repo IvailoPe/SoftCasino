@@ -15,7 +15,7 @@ itemController.post('/create',authMiddleware, async (req, res) => {
     }
 });
 
-itemController.get('/',authMiddleware, async (req, res) => {
+itemController.get('/', async (req, res) => {
     try {
         const items = await itemService.getAll();
         res.json(items)
@@ -24,7 +24,7 @@ itemController.get('/',authMiddleware, async (req, res) => {
     }
 });
 
-itemController.get('/:id',authMiddleware, async (req, res) => {
+itemController.get('/:id', async (req, res) => {
     const { id: itemId } = req.params;
     try {
         const item = await itemService.getItemById(itemId);

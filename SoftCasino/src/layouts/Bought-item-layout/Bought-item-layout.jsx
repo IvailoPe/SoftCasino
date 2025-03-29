@@ -2,8 +2,10 @@ import { useParams } from "react-router";
 import Information from "../../components/Information/Information";
 import styles from "./Bought-item-layout-styles.module.css";
 import useFetch from "../../hooks/useFetchHook";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function BoughtItemLayout() {
+  useRouteGuard();
   const params = useParams();
   const [item] = useFetch(
     "GET",

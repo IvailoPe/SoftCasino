@@ -5,12 +5,23 @@ import useFetch from "../../hooks/useFetchHook";
 import ranks from "../../constant/ranks";
 
 import styles from "./Profile-layout-styles.module.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
+import useRouteGuard from "../../hooks/useRouteGuard";
+import requester from "../../api/requester";
+import { useRef } from "react";
 
 export default function ProfileLayout() {
-  const [profileData] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/users/profile",null, true);
+  useRouteGuard();
+  const reset = useRef(true)
+  const [profileData] = useFetch(
+    "GET",
+    import.meta.env.VITE_API_ADRESS + "/users/profile",
+    null,
+    reset.current
+  );
+  const { setReset } = useOutletContext();
   const navigate = useNavigate();
-  
+
   return (
     <section className={styles["main-profile-wrapper"]}>
       <div className={styles["profile-wrapper"]}>
@@ -22,14 +33,24 @@ export default function ProfileLayout() {
               height="200"
               src={profileData.profilePicture}
             />
-            <Information h3={true} text={`Hello ${profileData.username || ""}`}></Information>
-            <Information text={`Games played: ${profileData.gamesPlayes}`}></Information>
+            <Information
+              h3={true}
+              text={`Hello ${profileData.username || ""}`}
+            ></Information>
+            <Information
+              text={`Games played: ${profileData.gamesPlayes}`}
+            ></Information>
             <Information text="Money won: 1000$"></Information>
-            <Information text={`Orders made: ${profileData.ordersMade}`}></Information>
+            <Information
+              text={`Orders made: ${profileData.ordersMade}`}
+            ></Information>
             <div>
-              <Button onClick={() => {
-                navigate("/profile/edit")
-              }} text="Update Profile"></Button>
+              <Button
+                onClick={() => {
+                  navigate("/profile/edit");
+                }}
+                text="Update Profile"
+              ></Button>
             </div>
           </div>
           <div className={styles["profile-bottom"]}>
@@ -45,9 +66,28 @@ export default function ProfileLayout() {
               voluptatum deserunt corporis voluptates quis molestiae."
             ></Information>
             <Information h3={true} text="Current rank:"></Information>
-            <h3 className={styles["profile-rank"]}>{ranks[profileData.rank]}</h3>
-            <Button text="Claim rewards"></Button>
-            <Information h3={true} text={`Next rank: ${ranks[profileData.rank + 1] || "Legendary"}`}></Information>
+            <h3 className={styles["profile-rank"]}>
+              {ranks[profileData.rank]}
+            </h3>
+            <Button
+              dissabled={profileData.isPriceTaken === true}
+              onClick={() => {
+                requester(
+                  "GET",
+                  import.meta.env.VITE_API_ADRESS + "/casino/reward"
+                ).then(() => {
+                  setReset((prevState) => {
+                    return !prevState;
+                  });
+                  reset.current = !reset.current
+                });
+              }}
+              text="Claim rewards"
+            ></Button>
+            <Information
+              h3={true}
+              text={`Next rank: ${ranks[profileData.rank + 1] || "Legendary"}`}
+            ></Information>
           </div>
         </div>
         <div className={styles["game-wrapper"]}>

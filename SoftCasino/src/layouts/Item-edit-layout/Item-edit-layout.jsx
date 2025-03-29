@@ -8,8 +8,10 @@ import { checkForErrors } from "../../utils/useFormUtils";
 import FormErrorMessage from "../../components/Form-error-message/Form-error-message";
 import useFetch from "../../hooks/useFetchHook";
 import { useEffect } from "react";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function ItemEditLayout() {
+  useRouteGuard();
   const navigate = useNavigate();
   const params = useParams();
   const [item] = useFetch(

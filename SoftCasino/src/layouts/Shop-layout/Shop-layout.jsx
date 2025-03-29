@@ -4,11 +4,14 @@ import Item from "../../components/Item/Item";
 import useFetch from "../../hooks/useFetchHook";
 
 import styles from "./Shop-layout-styles.module.css";
+import { useContext } from "react";
+import { authContext } from "../../context/Auth-context";
 
 export default function ShopLayout() {
   const [items] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/items",null, false,[]);
   const [casinoData] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/casino/sold/items",null, false);
-  const [profileData] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/users/profile",null, true);
+  const auth = useContext(authContext);
+  const [profileData] = useFetch("GET",import.meta.env.VITE_API_ADRESS + "/users/profile",null, true, {}, auth.currentUserLogged.isLogged);
   
   
   const itemsQuantity = items.reduce((acumulator, nextValue) => {

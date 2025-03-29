@@ -20,7 +20,7 @@ const userService = {
             throw new Error('Username already exists');
         }
 
-        const user = new User({ username, password,gamesPlayes:0,rank:ranks.iron, rankBar:0,money:0,ordersMade:0,profilePicture:"https://i.pinimg.com/736x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg" });
+        const user = new User({ username, password,gamesPlayes:0,rank:ranks.iron, rankBar:0,money:0,ordersMade:0,profilePicture:"https://i.pinimg.com/736x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg",isPriceTaken:false });
         const savedUser = await user.save();
 
         const token = jwt.sign(

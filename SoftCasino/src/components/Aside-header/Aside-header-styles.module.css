@@ -12,12 +12,24 @@
 
 .li {
   list-style-type: none;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
+
+.li svg{
+  font-size: 1.3rem;
+}
+
 
 .activeLink{
   opacity: 1;
   color: white;
   text-decoration: none;
+}
+
+.li a{
+  transition: opacity 0.2s;
 }
 
 .inactiveLink{

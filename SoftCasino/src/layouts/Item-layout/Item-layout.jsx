@@ -14,18 +14,20 @@ export default function ItemLayout() {
   const navigate = useNavigate();
   const {setReset} = useOutletContext();
   const params = useParams();
+  const auth = useContext(authContext);
   const [item] = useFetch(
     "GET",
     import.meta.env.VITE_API_ADRESS + "/items/" + params.id,
     null,
-    false
+    false,
   );
-  const auth = useContext(authContext);
   const [profileData] = useFetch(
     "GET",
     import.meta.env.VITE_API_ADRESS + "/users/profile",
     null,
-    true
+    true,
+    {},
+    auth.currentUserLogged.isLogged
   );
   const [buyAmount, setBuyAmount] = useState(0);
 
@@ -46,7 +48,7 @@ export default function ItemLayout() {
             h3={true}
             text={"Price: " + item.price + "$"}
           ></Information>
-          {auth.currentUserLogged.username !== "Admin" && (
+          {(auth.currentUserLogged.username !== "Admin" && auth.currentUserLogged.isLogged) && (
             <div className={styles["quantity-btns-wrapper"]}>
               <button
                 onClick={() => {
@@ -100,7 +102,7 @@ export default function ItemLayout() {
                 ></Button>
               </>
             )}
-            {auth.currentUserLogged.username !== "Admin" && (
+            {(auth.currentUserLogged.username !== "Admin" && auth.currentUserLogged.isLogged) && (
               <>
                 <Button
                   onClick={async () => {

@@ -1,8 +1,10 @@
 import Edit from "../../components/Edit/Edit";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 import styles from "./Edit-layout-styles.module.css";
 
 export default function EditLayout() {
+  useRouteGuard();
   return (
     <section className={styles["main-profile-edit-wrapper"]}>
       <div className={styles["profile-edit-wrapper"]}>

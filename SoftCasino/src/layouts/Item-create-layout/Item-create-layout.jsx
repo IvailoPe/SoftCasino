@@ -6,8 +6,10 @@ import useForm from "../../hooks/useFormHook";
 import { checkForErrors } from "../../utils/useFormUtils";
 
 import styles from "./Item-create-layout-styles.module.css";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function ItemCreateLayout() {
+  useRouteGuard();
   const navigate = useNavigate()
   const [form, setForm, formSubmitFunction] = useForm(
     {

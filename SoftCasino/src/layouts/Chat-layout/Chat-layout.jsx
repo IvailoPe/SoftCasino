@@ -4,8 +4,10 @@ import ChatMessage from "../../components/Chat-message/Chat-message";
 import useChat from "../../hooks/useChatHook";
 import styles from "./Chat-layout-styles.module.css";
 import { authContext } from "../../context/Auth-context";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function ChatLayout() {
+  useRouteGuard();
   const auth = useContext(authContext);
   const [inputText, setInputText] = useState("");
   const inputRef = useRef("");

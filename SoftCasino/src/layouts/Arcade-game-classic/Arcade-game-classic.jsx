@@ -9,8 +9,10 @@ import { useOutletContext } from "react-router";
 import Button from "../../components/Button/Button";
 import initialGameField from "./gameInitialState";
 import requester from "../../api/requester";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function ArcadeGameClassic() {
+  useRouteGuard();
   const [difficulty, setDifficulty] = useState("easy");
   const [inputBetAmount, setInputBetAmount] = useState("");
   const [canPlay, setCanPlay] = useState(false);

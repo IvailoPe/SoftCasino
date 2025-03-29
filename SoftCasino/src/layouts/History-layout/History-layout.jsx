@@ -3,8 +3,10 @@ import Information from "../../components/Information/Information";
 import Item from "../../components/Item/Item";
 import useFetch from "../../hooks/useFetchHook";
 import styles from "./History-layout-styles.module.css";
+import useRouteGuard from "../../hooks/useRouteGuard";
 
 export default function HistoryLayout() {
+  useRouteGuard();
   const [items] = useFetch(
     "GET",
     import.meta.env.VITE_API_ADRESS + "/items/user/items",
