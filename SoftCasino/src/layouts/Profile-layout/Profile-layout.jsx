@@ -82,7 +82,7 @@ export default function ProfileLayout() {
                   reset.current = !reset.current
                 });
               }}
-              text="Claim rewards"
+              text={profileData.isPriceTaken === true ? "Reward taken" : "Claim reward"}
             ></Button>
             <Information
               h3={true}
