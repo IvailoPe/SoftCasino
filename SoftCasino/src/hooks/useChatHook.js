@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export default function useChat(url, username, id) {
+export default function useChat(url, username, id, picture) {
     const [ws] = useState(() => {
         return new WebSocket(url);
     })
@@ -8,11 +8,13 @@ export default function useChat(url, username, id) {
 
     useEffect(() => {
         ws.addEventListener("open", () => {
-            ws.send(JSON.stringify({ username, action: "first-time", id }))
+            ws.send(JSON.stringify({ username, action: "first-time", id, picture }))
         })
 
         ws.addEventListener("message", (e) => {
             let data = JSON.parse(e.data);
+            console.log(data);
+            
             setMessages((prevData) => {
                 return [data,...prevData]
             })

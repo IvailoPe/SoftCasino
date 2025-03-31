@@ -12,3 +12,14 @@ export default function useRouteGuard() {
         }
     }, [])
 }
+
+export function useAuthenticationRouteGuard() {
+    const auth = useContext(authContext);
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (auth.currentUserLogged.isLogged) {
+            navigate("/home");
+        }
+    }, [])
+}

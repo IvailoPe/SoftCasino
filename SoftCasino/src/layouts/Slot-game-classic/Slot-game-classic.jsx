@@ -233,6 +233,10 @@ export default function SlotGameClassic() {
               if (isAuto.current && isPlaying === false) {
                 isAutoRef.current = setInterval(() => {
                   if (!isPlaying) {
+                    if(SpinBtnRef.current === null){
+                      clearInterval(isAutoRef.current);
+                      return;
+                    }
                     SpinBtnRef.current.click();
                   }
                 }, 0);

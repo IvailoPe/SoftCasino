@@ -136,15 +136,6 @@ export default function Aside() {
           ) : (
             ""
           )}
-          <li className={styles.li}>
-            <NavLink
-              className={({ isActive }) => {
-                return isActive ? styles.activeLink : styles.inactiveLink;
-              }}
-            >
-              Contact us
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </aside>

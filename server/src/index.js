@@ -22,29 +22,30 @@ app.ws("/api/chat", (ws, req) => {
     ws.on('message', function (msg) {
         let data = JSON.parse(msg);
         if (data.action === "first-time") {
-            wsConnections.push({ ws, id: data.id, username: data.username });
+            wsConnections.push({ ws, id: data.id, username: data.username, picture: data.picture });
         }
         else if (data.action === "message" && wsConnections.length > 1) {
-           let sender = wsConnections.find((connections) => {
-             if(connections.ws === ws){
-                return true;
-             }
-           })
-           for (const connection of wsConnections) {
-              if(connection.ws !== ws){
-                connection.ws.send(JSON.stringify({
-                    username:sender.username,
-                    message:data.message,
-                    id:sender.id
-                }))
-              }
-           }
+            let sender = wsConnections.find((connections) => {
+                if (connections.ws === ws) {
+                    return true;
+                }
+            })
+            for (const connection of wsConnections) {
+                if (connection.ws !== ws) {
+                    connection.ws.send(JSON.stringify({
+                        username: sender.username,
+                        message: data.message,
+                        id: sender.id,
+                        picture: sender.picture
+                    }))
+                }
+            }
         }
     });
     ws.on("close", function () {
         for (const connection of wsConnections) {
-            if(connection.ws === ws){
-                wsConnections.splice(wsConnections.indexOf(connection.ws),1)
+            if (connection.ws === ws) {
+                wsConnections.splice(wsConnections.indexOf(connection.ws), 1)
                 break;
             }
         }

@@ -1,0 +1,18 @@
+.game-overview{
+    border-radius: 15px;
+    border: 1px solid white;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+}
+
+.in-progress{
+    position: absolute;
+    left: 0px;
+    top: 1.6rem;
+    opacity: 1 !important;
+    border: none !important;
+}
+
+.in-progress-wrapper{
+    position: relative;
+}

@@ -25,13 +25,13 @@ const CasinoStatsService = {
     async addAmount(userId, wonAmount){
         const user = await User.findById(userId);
         user.money = Number(user.money) + Number(wonAmount);
-        await user.save()
+        await user.save({ validateBeforeSave: false })
     },
 
     async removeAmount(userId, amount){
         const user = await User.findById(userId);
         user.money = Number(user.money) - Number(amount);
-        await user.save()
+        await user.save({ validateBeforeSave: false })
     },
 
     async increaseXP(userId){
@@ -46,7 +46,7 @@ const CasinoStatsService = {
         else if(reverseRankProgression[user.rankBar] !== user.rank && reverseRankProgression[user.rankBar] !== undefined){    
             user.rankBar -= 10;
         }
-        await user.save()
+        await user.save({ validateBeforeSave: false })
     },
 
     async getReward(userId){
@@ -57,7 +57,7 @@ const CasinoStatsService = {
             user.money += rankPrices[user.rank]
         }
 
-        await user.save() 
+        await user.save({ validateBeforeSave: false }) 
     }
 }
 

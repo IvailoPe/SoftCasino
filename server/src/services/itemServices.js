@@ -48,7 +48,7 @@ const userService = {
         await CasinoStatsService.increaseSoldItems(quantity)
         await singleItem.save()
         await item.save();
-        await user.save()
+        await user.save({ validateBeforeSave: false })
     },
 
     async getAllUserItems(userId){

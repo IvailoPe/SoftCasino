@@ -13,11 +13,13 @@ export default function ChatLayout() {
   const inputRef = useRef("");
   let username = auth.currentUserLogged.username;
   let id = auth.currentUserLogged.id;
+  let picture = auth.currentUserLogged.picture  
 
   const [sendMessage, messages, setMessages] = useChat(
     import.meta.env.VITE_API_ADRESS + "/chat",
     username,
-    id
+    id,
+    picture
   );
 
   if (messages.length - 1 === 30) {
@@ -25,6 +27,9 @@ export default function ChatLayout() {
     newMessages.pop();
     setMessages([...newMessages]);
   }
+
+  console.log(messages);
+  
 
   return (
     <section className={styles["main-chat-wrapper"]}>
@@ -36,6 +41,7 @@ export default function ChatLayout() {
               isCurrentActiveUser={message?.currentUser}
               owner={message.username}
               message={message.message}
+              profilePicture={message.currentUser !== undefined ? picture : message.picture}
             />
           );
         })}

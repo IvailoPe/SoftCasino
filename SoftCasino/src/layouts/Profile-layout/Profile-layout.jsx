@@ -20,7 +20,7 @@ export default function ProfileLayout() {
     reset.current
   );
   const { setReset } = useOutletContext();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
 
   return (
     <section className={styles["main-profile-wrapper"]}>

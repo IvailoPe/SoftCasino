@@ -10,8 +10,10 @@ import { useNavigate } from "react-router";
 import { useContext, useState } from "react";
 import { authContext } from "../../context/Auth-context";
 import SiteError from "../../components/Site-error/Site-error";
+import { useAuthenticationRouteGuard } from "../../hooks/useRouteGuard";
 
 export default function Register() {
+  useAuthenticationRouteGuard()
   const navigate = useNavigate();
   const auth = useContext(authContext);
   const [errorMessage, setErrorMessage] = useState("");
@@ -45,13 +47,15 @@ export default function Register() {
             username: data.user.username,
             id: data.user._id,
             token: data.token,
+            picture:data.user.profilePicture
           })
         );
         auth.setUser({
           username: data.user.username,
           id: data.user._id,
           token: data.token,
-          isLogged:true
+          isLogged:true,
+          picture:data.user.profilePicture
         });
         navigate("/home");
       }
