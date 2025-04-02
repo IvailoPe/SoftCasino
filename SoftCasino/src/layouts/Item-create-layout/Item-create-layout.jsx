@@ -8,7 +8,13 @@ import { checkForErrors } from "../../utils/useFormUtils";
 import styles from "./Item-create-layout-styles.module.css";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function ItemCreateLayout() {
+export default function ItemCreateLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   const navigate = useNavigate()
   const [form, setForm, formSubmitFunction] = useForm(
@@ -43,7 +49,7 @@ export default function ItemCreateLayout() {
   let formError = checkForErrors(form);
 
   return (
-    <section className={styles["item-create-wrapper"]}>
+    <section style={showAsideClass} className={styles["item-create-wrapper"]}>
       <div className={styles["form-wrapper"]}>
         <form onSubmit={formSubmitFunction} className={styles["create-form"]}>
           <h2 className={styles["form-title"]}>Create item</h2>

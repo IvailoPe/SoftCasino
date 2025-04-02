@@ -5,7 +5,13 @@ import useFetch from "../../hooks/useFetchHook";
 import styles from "./History-layout-styles.module.css";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function HistoryLayout() {
+export default function HistoryLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   const [items] = useFetch(
     "GET",
@@ -24,7 +30,7 @@ export default function HistoryLayout() {
   const navigate = useNavigate();
 
   return (
-    <section className={styles["main-history-wrapper"]}>
+    <section style={showAsideClass} className={styles["main-history-wrapper"]}>
       <div className={styles["history-shop-wrapper"]}>
         <div className={styles["history-shop-top"]}>
           <Information

@@ -64,7 +64,9 @@ export default function Login() {
     <main className={styles["main-login-wrapper"]}>
       <SiteError clearError={setErrorMessage} error={errorMessage}></SiteError>
       <div className={styles["login-wrapper"]}>
-        <img width="200" height="200" src={logo} alt="" />
+        <img style={{cursor:"pointer"}} onClick={() => {
+          navigate("/home")
+        }} width="200" height="200" src={logo} alt="" />
         <form onSubmit={formSubmitFunction} className={styles["login-form"]}>
           <h3 className={styles["login-form-title"]}>Login form</h3>
           <div className={styles["login-form-field"]}>

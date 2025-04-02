@@ -25,3 +25,11 @@
   justify-content: space-around;
   padding: 15px;
 }
+
+
+@media screen and (min-width: 1001px) {
+  .main-item-wrapper {
+    pointer-events: all !important;
+    opacity: 1 !important;
+  }
+}

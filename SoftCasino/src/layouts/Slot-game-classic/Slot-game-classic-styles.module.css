@@ -1,109 +1,115 @@
-.gameMainWrapper{
-    display: flex;
-    height: calc(100vh - 64.89px);
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    align-items: center;
+.gameMainWrapper {
+  display: flex;
+  height: calc(100vh - 64.89px);
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
 }
 
-.gameWrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    background-color: rgb(26, 62, 121);
-    padding: 30px 0px;
-    box-shadow: 0px 0px 10px 4px;
-    border-radius: 20px;
+.gameWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: rgb(26, 62, 121);
+  padding: 30px 0px;
+  box-shadow: 0px 0px 10px 4px;
+  border-radius: 20px;
 }
-.gameTop{
-    display: flex;
-    gap: 25px;
-}
-
-.gameBottom{
-    display: flex;
-    gap: 13px;
-    justify-content: center;
+.gameTop {
+  display: flex;
+  gap: 25px;
 }
 
-.gameSwitchAmount{
-    display: flex;
+.gameBottom {
+  display: flex;
+  gap: 13px;
+  justify-content: center;
 }
 
-.gameSwitchAmount div{
-    background-color: white;
-    display: flex;
-    align-items: center;
-    transition: background 0.3s;
-    cursor: pointer;
-    border: 1px solid rgb(5, 24, 56);
-    padding: 1px;
+.gameSwitchAmount {
+  display: flex;
+}
+
+.gameSwitchAmount div {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s;
+  cursor: pointer;
+  border: 1px solid rgb(5, 24, 56);
+  padding: 1px;
 }
 
 .gameSwitchAmount div * {
-    color: black;
+  color: black;
 }
 
-.gameSwitchAmount div:first-of-type{
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+.gameSwitchAmount div:first-of-type {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-.gameSwitchAmount div:first-of-type:hover{
-    background-color: rgb(26, 62, 121);
+.gameSwitchAmount div:first-of-type:hover {
+  background-color: rgb(26, 62, 121);
 }
 
-.gameSwitchAmount div:hover *{
-    color: white;
+.gameSwitchAmount div:hover * {
+  color: white;
 }
 
-.gameSwitchAmount div:last-of-type{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+.gameSwitchAmount div:last-of-type {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
-.gameSwitchAmount div:last-of-type:hover{
-    background-color: rgb(26, 62, 121);
+.gameSwitchAmount div:last-of-type:hover {
+  background-color: rgb(26, 62, 121);
 }
 
-.gameLastWinWrapper{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid white;
-    padding: 5px 15px 5px 15px;
-    align-items: center;
-    gap: 7px;
+.gameLastWinWrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  padding: 5px 15px 5px 15px;
+  align-items: center;
+  gap: 7px;
 }
 
-
-.inputAmount{
-    font-size: 1.2rem;
-    width: 20%;
-    padding-left: 5px;
+.inputAmount {
+  font-size: 1.2rem;
+  width: 20%;
+  padding-left: 5px;
 }
 
-.symbolsContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+.symbolsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.symbolsContainer img:nth-child(1){
-    position: absolute;
-    z-index: -100;
+.symbolsContainer img:nth-child(1) {
+  position: absolute;
+  z-index: -100;
 }
 
-.symbolsContainer img:nth-child(5){
-    position: absolute;
-    z-index: -100;
+.symbolsContainer img:nth-child(5) {
+  position: absolute;
+  z-index: -100;
 }
 
-.symbolsContainer img.loserSymbols{
-    transform:scale(1.1)
+.symbolsContainer img.loserSymbols {
+  transform: scale(1.1);
 }
 
-.loserSymbols{
-    transform:scale(1.1)
+.loserSymbols {
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 1001px) {
+  .gameMainWrapper {
+    pointer-events: all !important;
+    opacity: 1 !important;
+  }
 }

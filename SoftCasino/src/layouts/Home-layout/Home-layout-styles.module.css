@@ -53,3 +53,11 @@
   opacity: 1;
   cursor: pointer;
 }
+
+
+@media screen and (min-width: 1001px) {
+  .section {
+    pointer-events: all !important;
+    opacity: 1 !important;
+  }
+}

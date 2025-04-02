@@ -129,3 +129,11 @@
 .showBomb:hover{
     background-color: rgb(146, 41, 41);;
 }
+
+
+@media screen and (min-width: 1001px) {
+    .gameMainWrapper {
+      pointer-events: all !important;
+      opacity: 1 !important;
+    }
+  }

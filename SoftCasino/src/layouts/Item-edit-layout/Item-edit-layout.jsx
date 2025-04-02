@@ -10,7 +10,13 @@ import useFetch from "../../hooks/useFetchHook";
 import { useEffect } from "react";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function ItemEditLayout() {
+export default function ItemEditLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   const navigate = useNavigate();
   const params = useParams();
@@ -63,7 +69,7 @@ export default function ItemEditLayout() {
   let formError = checkForErrors(form);
 
   return (
-    <section className={styles["item-edit-wrapper"]}>
+    <section style={showAsideClass} className={styles["item-edit-wrapper"]}>
       <div className={styles["form-wrapper"]}>
         <form onSubmit={formSubmitFunction} className={styles["edit-form"]}>
           <h2 className={styles["form-title"]}>Edit item</h2>

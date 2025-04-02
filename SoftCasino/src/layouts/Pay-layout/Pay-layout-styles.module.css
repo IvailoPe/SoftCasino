@@ -1,82 +1,83 @@
-.credit-card-wrapper{
-    background-color: white;
-    max-width: 30rem;
-    padding: 10px;
-    margin: auto;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 4px rgb(40, 100, 196);
+.credit-card-wrapper {
+  background-color: white;
+  max-width: 30rem;
+  padding: 10px;
+  margin: auto;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 4px rgb(40, 100, 196);
 }
 
-
-.credit-card-images{
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+.credit-card-images {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-.input-main-numbers{
-    width: 100%;
+.input-main-numbers {
+  width: 100%;
 }
 
-
-.credit-card-additional-info{
-   padding: 15px;
-   display: flex;
-   justify-content: space-between;
+.credit-card-additional-info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.input{
-    border: none;
-    outline: none;
-    border-bottom: 1px solid black;
-    padding: 5px 5px 5px 0px;
+.input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  padding: 5px 5px 5px 0px;
 }
 
-.input::placeholder{
-   font-size: 1rem;
-   opacity: 0.6;
+.input::placeholder {
+  font-size: 1rem;
+  opacity: 0.6;
 }
 
-.input-additional{
-    width: 1.5rem;
+.input-additional {
+  width: 1.5rem;
 }
 
-
-.input-cvv{
-    max-width: 4.5rem;
+.input-cvv {
+  max-width: 4.5rem;
 }
 
-
-.credit-card-main-info{
-    padding: 15px;
+.credit-card-main-info {
+  padding: 15px;
 }
 
-.pay-wrapper{
-    margin-top: 5rem;
-    position: relative;
+.pay-wrapper {
+  margin-top: 5rem;
+  position: relative;
 }
 
-
-.pay-wrapper-down{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    box-shadow: 0px 0px 10px 4px rgb(40, 100, 196);
-    max-width: 20rem;
-    margin: auto;
-    margin-top: 2rem;
-    border-radius: 10px;
-    color: black;
-    padding: 10px;
-    gap: 15px;
+.pay-wrapper-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 0px 10px 4px rgb(40, 100, 196);
+  max-width: 20rem;
+  margin: auto;
+  margin-top: 2rem;
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+  gap: 15px;
 }
 
+.error {
+  outline: red;
+}
 
-.error{
-    outline: red;
+@media screen and (min-width: 1001px) {
+  .pay-wrapper {
+    pointer-events: all !important;
+    opacity: 1 !important;
+  }
 }

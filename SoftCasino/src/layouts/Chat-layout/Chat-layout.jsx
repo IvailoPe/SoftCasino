@@ -6,7 +6,13 @@ import styles from "./Chat-layout-styles.module.css";
 import { authContext } from "../../context/Auth-context";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function ChatLayout() {
+export default function ChatLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   const auth = useContext(authContext);
   const [inputText, setInputText] = useState("");
@@ -32,7 +38,7 @@ export default function ChatLayout() {
   
 
   return (
-    <section className={styles["main-chat-wrapper"]}>
+    <section style={showAsideClass} className={styles["main-chat-wrapper"]}>
       <div className={styles["chat-wrapper"]}>
         {messages.map((message, index) => {
           return (

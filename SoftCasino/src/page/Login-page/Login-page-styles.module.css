@@ -53,3 +53,11 @@
 .input:not(:focus) ~ p{
     display: block;
 }
+
+@media screen and (max-width: 1000px) {
+    .main-login-wrapper{
+        position: static;
+        width: auto;
+    }
+}
+  

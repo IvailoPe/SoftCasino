@@ -3,10 +3,16 @@ import useRouteGuard from "../../hooks/useRouteGuard";
 
 import styles from "./Edit-layout-styles.module.css";
 
-export default function EditLayout() {
+export default function EditLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   return (
-    <section className={styles["main-profile-edit-wrapper"]}>
+    <section style={showAsideClass} className={styles["main-profile-edit-wrapper"]}>
       <div className={styles["profile-edit-wrapper"]}>
         <div className={styles["edit-form-wrapper"]}>
           <Edit

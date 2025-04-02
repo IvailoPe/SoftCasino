@@ -10,7 +10,13 @@ import useRouteGuard from "../../hooks/useRouteGuard";
 import requester from "../../api/requester";
 import { useRef } from "react";
 
-export default function ProfileLayout() {
+export default function ProfileLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   const reset = useRef(true)
   const [profileData] = useFetch(
@@ -23,7 +29,7 @@ export default function ProfileLayout() {
   const navigate = useNavigate();  
 
   return (
-    <section className={styles["main-profile-wrapper"]}>
+    <section style={showAsideClass} className={styles["main-profile-wrapper"]}>
       <div className={styles["profile-wrapper"]}>
         <div className={styles["profile-main"]}>
           <div className={styles["profile-top"]}>

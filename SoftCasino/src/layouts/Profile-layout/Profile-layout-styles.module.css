@@ -79,3 +79,11 @@
   gap: 20px;
   overflow: auto;
 }
+
+
+@media screen and (min-width: 1001px) {
+  .main-profile-wrapper {
+    pointer-events: all !important;
+    opacity: 1 !important;
+  }
+}

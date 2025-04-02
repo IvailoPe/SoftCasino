@@ -11,7 +11,13 @@ import initialGameField from "./gameInitialState";
 import requester from "../../api/requester";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function ArcadeGameClassic() {
+export default function ArcadeGameClassic({showAside}) {
+  let showAsideClass = {}
+  if(showAside){
+    showAsideClass.opacity = "0.3"
+    showAsideClass.pointerEvents = "none"
+  }
+  
   useRouteGuard();
   const [difficulty, setDifficulty] = useState("easy");
   const [inputBetAmount, setInputBetAmount] = useState("");
@@ -32,7 +38,7 @@ export default function ArcadeGameClassic() {
   }
 
   return (
-    <section className={styles.gameMainWrapper}>
+    <section style={showAsideClass} className={styles.gameMainWrapper}>
       <div className={styles.gameWrapper}>
         <div className={styles.gameTop}>{gameField}</div>
         <div className={styles.gameBottom}>

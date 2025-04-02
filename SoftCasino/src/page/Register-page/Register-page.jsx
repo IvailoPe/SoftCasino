@@ -68,7 +68,9 @@ export default function Register() {
     <main className={styles["main-register-wrapper"]}>
       <SiteError clearError={setErrorMessage} error={errorMessage}></SiteError>
       <div className={styles["register-wrapper"]}>
-        <img width="200" height="200" src={logo} alt="" />
+        <img style={{cursor:"pointer"}} onClick={() => {
+          navigate("/home")
+        }} width="200" height="200" src={logo} alt="" />
         <form onSubmit={formSubmitFunction} className={styles["register-form"]}>
           <h3 className={styles["register-form-title"]}>Register form</h3>
           <div className={styles["register-form-field"]}>

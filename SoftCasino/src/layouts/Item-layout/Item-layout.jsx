@@ -10,7 +10,13 @@ import { useContext, useState } from "react";
 import { authContext } from "../../context/Auth-context";
 import requester from "../../api/requester";
 
-export default function ItemLayout() {
+export default function ItemLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   const navigate = useNavigate();
   const {setReset} = useOutletContext();
   const params = useParams();
@@ -34,7 +40,7 @@ export default function ItemLayout() {
   const canBuy = profileData.money / item.price;
 
   return (
-    <section className={styles["main-item-wrapper"]}>
+    <section style={showAsideClass} className={styles["main-item-wrapper"]}>
       <div className={styles["item-wrapper"]}>
         <img width="500" height="500" src={item.link} />
         <div className={styles["item-information"]}>

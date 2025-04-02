@@ -9,7 +9,13 @@ import Notification from "../../components/Notification/Notification";
 import { useState } from "react";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function PayLayout() {
+export default function PayLayout({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   const {setReset} = useOutletContext();
   const [notification, setNotification] = useState("");
@@ -69,7 +75,7 @@ export default function PayLayout() {
   }
 
   return (
-    <section className={styles["pay-wrapper"]}>
+    <section style={showAsideClass} className={styles["pay-wrapper"]}>
       <form onSubmit={formSubmitFunction}>
         <section className={styles["credit-card-wrapper"]}>
           <div className={styles["credit-card-images"]}>

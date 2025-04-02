@@ -19,27 +19,29 @@ import ItemCreateLayout from "./layouts/Item-create-layout/Item-create-layout";
 import BoughtItemLayout from "./layouts/Bought-item-layout/Bought-item-layout";
 import SlotGameClassic from "./layouts/Slot-game-classic/Slot-game-classic";
 import ArcadeGameClassic from "./layouts/Arcade-game-classic/Arcade-game-classic";
+import { useState } from "react";
 
 function App() {
+  const [showAside, setShowAside] = useState(false)
   return (
     <>
       <AuthProvider>
-        <Aside />
+        <Aside showAside={showAside} setShowAside={setShowAside}/>
         <Routes>
-          <Route element={<Main />}>
-            <Route path="home" element={<HomeLayout />} />
-            <Route path="add-funds" element={<PayLayout />} />
-            <Route path="chat" element={<ChatLayout />} />
-            <Route path="shop" element={<ShopLayout />} />
-            <Route path="shop/history" element={<HistoryLayout />} />
-            <Route path="item/:id" element={<ItemLayout />} />
-            <Route path="bought/item/:id" element={<BoughtItemLayout />} />
-            <Route path="item/edit/:id" element={<ItemEditLayout />} />
-            <Route path="item/create" element={<ItemCreateLayout />} />
-            <Route path="profile" element={<ProfileLayout />} />
-            <Route path="profile/edit" element={<EditLayout />} />
-            <Route path="slot/game/1" element={<SlotGameClassic />} />
-            <Route path="arcade/game/1" element={<ArcadeGameClassic />} />
+          <Route element={<Main setShowAside={setShowAside} />}>
+            <Route path="home" element={<HomeLayout showAside={showAside}  />} />
+            <Route path="add-funds" element={<PayLayout showAside={showAside} />} />
+            <Route path="chat" element={<ChatLayout showAside={showAside} />} />
+            <Route path="shop" element={<ShopLayout showAside={showAside} />} />
+            <Route path="shop/history" element={<HistoryLayout showAside={showAside} />} />
+            <Route path="item/:id" element={<ItemLayout showAside={showAside} />} />
+            <Route path="bought/item/:id" element={<BoughtItemLayout showAside={showAside} />} />
+            <Route path="item/edit/:id" element={<ItemEditLayout showAside={showAside} />} />
+            <Route path="item/create" element={<ItemCreateLayout showAside={showAside} />} />
+            <Route path="profile" element={<ProfileLayout showAside={showAside} />} />
+            <Route path="profile/edit" element={<EditLayout showAside={showAside} />} />
+            <Route path="slot/game/1" element={<SlotGameClassic showAside={showAside} />} />
+            <Route path="arcade/game/1" element={<ArcadeGameClassic showAside={showAside} />} />
           </Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>

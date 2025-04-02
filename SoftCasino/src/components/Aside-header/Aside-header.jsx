@@ -4,27 +4,50 @@ import styles from "./Aside-header-styles.module.css";
 import { NavLink, useNavigate } from "react-router";
 import { authContext } from "../../context/Auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faClockRotateLeft, faCreditCard, faHouse, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartShopping,
+  faClockRotateLeft,
+  faCreditCard,
+  faHouse,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { faRocketchat } from "@fortawesome/free-brands-svg-icons";
 
-export default function Aside() {
+export default function Aside({ showAside, setShowAside }) {
   const auth = useContext(authContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  let showAsideClass = {};
+
+  if (showAside) {
+    showAsideClass.display = "block";
+    showAsideClass.zIndex = "1000";
+  }
 
   return (
-    <aside className={styles.aside}>
+    <aside className={styles.aside} style={showAsideClass}>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li className={styles.specialLi}>
-            <img onClick={() => {
-              navigate("/home")
-            }} width="140" height="140" src="../../public/logo.png" alt="" />
+            <img
+              onClick={() => {
+                navigate("/home");
+                setShowAside(false);
+              }}
+              width="140"
+              height="140"
+              src="../../public/logo.png"
+              alt=""
+            />
           </li>
         </ul>
         <ul className={styles.ul}>
           <li className={styles.li}>
-          <FontAwesomeIcon icon={faHouse} />
+            <FontAwesomeIcon icon={faHouse} />
             <NavLink
+              onClick={() => {
+                setShowAside(false);
+              }}
               className={({ isActive }) => {
                 return isActive ? styles.activeLink : styles.inactiveLink;
               }}
@@ -37,6 +60,9 @@ export default function Aside() {
             <li className={styles.li}>
               <FontAwesomeIcon icon={faUser} />
               <NavLink
+                onClick={() => {
+                  setShowAside(false);
+                }}
                 className={({ isActive }) => {
                   return isActive ? styles.activeLink : styles.inactiveLink;
                 }}
@@ -49,6 +75,9 @@ export default function Aside() {
           <li className={styles.li}>
             <FontAwesomeIcon icon={faCartShopping} />
             <NavLink
+              onClick={() => {
+                setShowAside(false);
+              }}
               className={({ isActive }) => {
                 return isActive ? styles.activeLink : styles.inactiveLink;
               }}
@@ -60,6 +89,9 @@ export default function Aside() {
           {auth.currentUserLogged?.username === "Admin" && (
             <li className={styles.li}>
               <NavLink
+                onClick={() => {
+                  setShowAside(false);
+                }}
                 className={({ isActive }) => {
                   return isActive ? styles.activeLink : styles.inactiveLink;
                 }}
@@ -73,6 +105,9 @@ export default function Aside() {
             <li className={styles.li}>
               <FontAwesomeIcon icon={faRocketchat} />
               <NavLink
+                onClick={() => {
+                  setShowAside(false);
+                }}
                 className={({ isActive }) => {
                   return isActive ? styles.activeLink : styles.inactiveLink;
                 }}
@@ -86,6 +121,9 @@ export default function Aside() {
             <li className={styles.li}>
               <FontAwesomeIcon icon={faCreditCard} />
               <NavLink
+                onClick={() => {
+                  setShowAside(false);
+                }}
                 className={({ isActive }) => {
                   return isActive ? styles.activeLink : styles.inactiveLink;
                 }}
@@ -99,6 +137,9 @@ export default function Aside() {
             <li className={styles.li}>
               <FontAwesomeIcon icon={faClockRotateLeft} />
               <NavLink
+                onClick={() => {
+                  setShowAside(false);
+                }}
                 className={({ isActive }) => {
                   return isActive ? styles.activeLink : styles.inactiveLink;
                 }}
@@ -107,34 +148,6 @@ export default function Aside() {
                 History
               </NavLink>
             </li>
-          )}
-        </ul>
-        <ul className={styles.ul}>
-          {auth.currentUserLogged.isLogged === false ? (
-            <>
-              <li className={styles.li}>
-                <NavLink
-                  className={({ isActive }) => {
-                    return isActive ? styles.activeLink : styles.inactiveLink;
-                  }}
-                  to={"/login"}
-                >
-                  Login
-                </NavLink>
-              </li>
-              <li className={styles.li}>
-                <NavLink
-                  className={({ isActive }) => {
-                    return isActive ? styles.activeLink : styles.inactiveLink;
-                  }}
-                  to={"/register"}
-                >
-                  Register
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            ""
           )}
         </ul>
       </nav>

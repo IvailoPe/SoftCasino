@@ -60,13 +60,7 @@
   margin-top: auto;
   gap: 15px;
   font-size: 1.5rem;
-}
-
-.nav ul:nth-child(3) {
-  margin-top: auto;
-  gap: 2px;
-  padding-bottom: 10px;
-  font-size: 1.1rem;
+  margin-bottom: auto;
 }
 
 .activeLink:hover{
@@ -81,4 +75,16 @@
 
 .specialLi:hover{
   cursor: pointer;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .aside{
+    display: none;
+    width: 200px;
+  }
+
+  .nav ul:nth-child(2){
+    margin: 0px;
+  }
 }

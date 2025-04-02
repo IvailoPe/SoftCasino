@@ -5,7 +5,7 @@ import useFetch from "../hooks/useFetchHook";
 import { useContext, useState } from "react";
 import { authContext } from "../context/Auth-context";
 
-export default function Main() {
+export default function Main({setShowAside}) {
   const [reset, setReset] = useState(false);
   const auth = useContext(authContext);
 
@@ -20,7 +20,7 @@ export default function Main() {
 
   return (
     <main className={styles.main}>
-      <MainHeader money={profileData.money} />
+      <MainHeader setShowAside={setShowAside} money={profileData.money} />
       <Outlet context={{ setReset, money: profileData.money }}></Outlet>
     </main>
   );

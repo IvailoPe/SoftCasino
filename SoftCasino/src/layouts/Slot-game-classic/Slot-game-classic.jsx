@@ -20,7 +20,13 @@ import requester from "../../api/requester";
 import { useOutletContext } from "react-router";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function SlotGameClassic() {
+export default function SlotGameClassic({showAside}) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
+  }
+
   useRouteGuard();
   const isAuto = useRef(false);
   const isAutoRef = useRef();
@@ -52,7 +58,7 @@ export default function SlotGameClassic() {
   const slotImage15 = useRef();
 
   return (
-    <section className={styles.gameMainWrapper}>
+    <section style={showAsideClass} className={styles.gameMainWrapper}>
       <div className={styles.gameWrapper}>
         <div className={styles.gameTop}>
           <div className={styles.symbolsContainer}>

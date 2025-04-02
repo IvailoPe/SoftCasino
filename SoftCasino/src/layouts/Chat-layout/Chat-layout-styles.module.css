@@ -1,39 +1,45 @@
-
-.main-chat-wrapper{
-    height:calc(100vh - 64.89px);
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+.main-chat-wrapper {
+  height: calc(100vh - 64.89px);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
-.chat-wrapper{
-    min-height: 92%;
-    padding: 15px 15px 15px 15px;
-    overflow: auto;
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 20px;
+.chat-wrapper {
+  min-height: 92%;
+  padding: 15px 15px 15px 15px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
 }
 
-.chat-bottom{
-    display: flex;
-    min-height: 8%;
+.chat-bottom {
+  display: flex;
+  min-height: 8%;
 }
 
-.chat-bottom-input{
-    flex-grow: 1;
-    outline: none;
-    font-size: 1.5rem;
-    padding-left: 15px;
+.chat-bottom-input {
+  flex-grow: 1;
+  outline: none;
+  font-size: 1.5rem;
+  padding-left: 15px;
 }
 
-.chat-bottom-btn{
-    padding: 12px;
-    font-size: 1rem;
-    background-color: rgb(26, 62, 121);
-    color: white;
-    border-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
+.chat-bottom-btn {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: rgb(26, 62, 121);
+  color: white;
+  border-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 1001px) {
+  .main-chat-wrapper {
+    pointer-events: all !important;
+    opacity: 1 !important;
+  }
 }
