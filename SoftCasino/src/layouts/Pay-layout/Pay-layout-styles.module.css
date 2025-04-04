@@ -81,3 +81,9 @@
     opacity: 1 !important;
   }
 }
+
+@media screen and (min-width: 525px) {
+  .pay-wrapper > form{
+    padding: 20px;
+  }
+}

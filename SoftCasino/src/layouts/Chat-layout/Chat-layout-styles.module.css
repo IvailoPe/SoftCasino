@@ -43,3 +43,10 @@
     opacity: 1 !important;
   }
 }
+
+@media screen and (min-width: 1001px) {
+  .main-chat-wrapper {
+    pointer-events: all !important;
+    opacity: 1 !important;
+  }
+}

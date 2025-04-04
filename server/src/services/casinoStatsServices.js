@@ -58,6 +58,18 @@ const CasinoStatsService = {
         }
 
         await user.save({ validateBeforeSave: false }) 
+    },
+
+    async increasePlayedGames(userId){
+        const user = await User.findById(userId);
+        user.gamesPlayes++;
+        await user.save({ validateBeforeSave: false }) 
+    },
+
+    async increaseWonMoneyAmount(userId, wonAmount){
+        const user = await User.findById(userId);
+        user.wonAmount += Number(wonAmount);
+        await user.save({ validateBeforeSave: false })
     }
 }
 

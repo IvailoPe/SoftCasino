@@ -30,6 +30,7 @@ function App() {
         <Routes>
           <Route element={<Main setShowAside={setShowAside} />}>
             <Route path="home" element={<HomeLayout showAside={showAside}  />} />
+            <Route path="/" element={<HomeLayout showAside={showAside}  />} />
             <Route path="add-funds" element={<PayLayout showAside={showAside} />} />
             <Route path="chat" element={<ChatLayout showAside={showAside} />} />
             <Route path="shop" element={<ShopLayout showAside={showAside} />} />

@@ -19,7 +19,7 @@ export default function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [form, setForm, formSubmitFunction] = useForm(
     {
-      username: { maxL: 10, minL: 2, required: true, value: "" },
+      username: { maxL: 10, minL: 2, required: true, value: "", administration:false },
       password: { maxL: 10, minL: 3, required: true, value: "" },
       passwordConfirm: {
         required: true,

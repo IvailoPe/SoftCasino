@@ -40,3 +40,14 @@
     opacity: 1 !important;
   }
 }
+
+
+@media screen and (max-width: 550px) {
+  .history-shop-main {
+    justify-content: center;
+  }
+
+  .history-shop-top {
+    font-size: 0.7rem;
+  }
+}

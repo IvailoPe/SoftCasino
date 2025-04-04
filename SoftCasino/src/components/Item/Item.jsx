@@ -1,10 +1,10 @@
 import styles from "./Item-styles.module.css";
 
-export default function Item({ link, quantity, price, handleClick }) {
+export default function Item({ link, quantity, price, handleClick }) {  
   return (
     <div className={styles.item} onClick={handleClick}>
       <img width="120" className={styles["item-img"]} height="120" src={link} />
-      {quantity ? (
+      {price ? (
         <>
           <p>Quantity {quantity}</p>
           <p>

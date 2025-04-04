@@ -1,5 +1,4 @@
 import Button from "../../components/Button/Button";
-import GameOverview from "../../components/Game-overview/Game-overview";
 import Information from "../../components/Information/Information";
 import useFetch from "../../hooks/useFetchHook";
 import ranks from "../../constant/ranks";
@@ -10,7 +9,7 @@ import useRouteGuard from "../../hooks/useRouteGuard";
 import requester from "../../api/requester";
 import { useRef } from "react";
 
-export default function ProfileLayout({showAside}) {
+export default function ProfileLayout({ showAside }) {
   let showAsideClass = {};
   if (showAside) {
     showAsideClass.opacity = "0.3";
@@ -18,7 +17,7 @@ export default function ProfileLayout({showAside}) {
   }
 
   useRouteGuard();
-  const reset = useRef(true)
+  const reset = useRef(true);
   const [profileData] = useFetch(
     "GET",
     import.meta.env.VITE_API_ADRESS + "/users/profile",
@@ -26,7 +25,7 @@ export default function ProfileLayout({showAside}) {
     reset.current
   );
   const { setReset } = useOutletContext();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   return (
     <section style={showAsideClass} className={styles["main-profile-wrapper"]}>
@@ -46,7 +45,9 @@ export default function ProfileLayout({showAside}) {
             <Information
               text={`Games played: ${profileData.gamesPlayes}`}
             ></Information>
-            <Information text="Money won: 1000$"></Information>
+            <Information
+              text={`Money won: ${profileData.wonAmount}$`}
+            ></Information>
             <Information
               text={`Orders made: ${profileData.ordersMade}`}
             ></Information>
@@ -61,16 +62,7 @@ export default function ProfileLayout({showAside}) {
           </div>
           <div className={styles["profile-bottom"]}>
             <Information h3={true} text="Loyalty system"></Information>
-            <Information
-              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-              itaque voluptatum eaque tempora esse accusamus earum quaerat
-              quisquam ducimus soluta, harum asperiores aut laudantium,
-              sapiente, quia magnam est architecto tempore? Temporibus
-              reiciendis iste molestias sit. Nemo enim quaerat, error natus,
-              quis harum quas exercitationem corrupti, possimus voluptates
-              dolores! Rerum neque quisquam asperiores velit reprehenderit
-              voluptatum deserunt corporis voluptates quis molestiae."
-            ></Information>
+            <Information text="Welcome to the official soft casino loyality system. Every time you play, your account will gain experience which is used for levels. When you reach new level you will be rewarded with money for playing on our website :). On the first rank the reward will be free for just signing up!"></Information>
             <Information h3={true} text="Current rank:"></Information>
             <h3 className={styles["profile-rank"]}>
               {ranks[profileData.rank]}
@@ -85,21 +77,19 @@ export default function ProfileLayout({showAside}) {
                   setReset((prevState) => {
                     return !prevState;
                   });
-                  reset.current = !reset.current
+                  reset.current = !reset.current;
                 });
               }}
-              text={profileData.isPriceTaken === true ? "Reward taken" : "Claim reward"}
+              text={
+                profileData.isPriceTaken === true
+                  ? "Reward taken"
+                  : "Claim reward"
+              }
             ></Button>
             <Information
               h3={true}
               text={`Next rank: ${ranks[profileData.rank + 1] || "Legendary"}`}
             ></Information>
-          </div>
-        </div>
-        <div className={styles["game-wrapper"]}>
-          <p className={styles["p-fav-games"]}>Favourite games</p>
-          <div className={styles["game-section"]}>
-            <GameOverview link="https://www.wikihow.com/images/thumb/3/3a/GenericImage_Slot.jpg/460px-GenericImage_Slot.jpg"></GameOverview>
           </div>
         </div>
       </div>

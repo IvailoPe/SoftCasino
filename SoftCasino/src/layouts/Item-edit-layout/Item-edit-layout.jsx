@@ -110,6 +110,7 @@ export default function ItemEditLayout({showAside}) {
               rows="10"
               cols="80"
               id="description"
+              
               onChange={(e) => {
                 setForm(e.currentTarget.value, e.target.name);
               }}

@@ -26,3 +26,10 @@
   cursor: not-allowed;
   color: white;
 }
+
+
+@media screen and (max-width: 1000px) {
+  .btn{
+    font-size: 0.7rem;
+  }
+}

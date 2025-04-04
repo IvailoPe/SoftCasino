@@ -35,6 +35,13 @@ export function transformFormObj(formObj) {
             }
         }
 
+        if(!formObj[input].administration && formObj[input].administration !== undefined){            
+            if (formObj[input].value === "Admin" || formObj[input].value === "admin") {
+                newObj[input].error = `${input} cant be Admin/admin`
+                continue
+            } 
+        }
+
         if (formObj[input].maxL === formObj[input].minL && formObj[input].value.length !== formObj[input].maxL) {
             if (formObj[input].maxL !== undefined) {
                 newObj[input].error = `${input} must beaaaa between ${formObj[input].minL} and ${formObj[input].maxL} characters`;

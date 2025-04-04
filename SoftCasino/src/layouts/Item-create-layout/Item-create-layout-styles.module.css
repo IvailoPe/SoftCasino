@@ -56,3 +56,23 @@
     opacity: 1 !important;
   }
 }
+
+@media screen and (max-width: 650px) {
+  .create-textarea{
+    height: 8rem;
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .create-textarea{
+    height: 4rem;
+    width: 16rem;
+  }
+  .create-form{
+    overflow: auto;
+  }
+  .form-wrapper{
+    overflow: auto;
+  }
+}

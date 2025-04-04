@@ -31,6 +31,10 @@ const userSchema = new Schema({
         type: Number,
         required: true
     },
+    wonAmount:{
+        type: Number,
+        required: true
+    },
     ordersMade: {
         type: Number,
         required: true
