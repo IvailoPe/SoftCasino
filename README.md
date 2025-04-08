@@ -12,9 +12,6 @@ Open the front end folder (SoftCasino) with vs code and type into the terminal n
 <h3>Express</h3>
 Open the back end folder (server) with vs code and type npm run start to run it or just node src/index.js.
 
-<h3>Express</h3>
-Open the back end folder in vs code and type npm start to run it with nodemoon or node index.js
-
 <h2>Some pictures from the app</h2>
 
 ![image](https://github.com/user-attachments/assets/3744716c-ad77-4e34-9ea7-7160e52cd3bb)
