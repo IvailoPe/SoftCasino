@@ -35,7 +35,7 @@ export let symbolsNameMapping = {
 
 export let symbolsNameAmountMapping = {
     "7":3.00,
-    "apple":1,
+    "apple":1.10,
     "diamond":2.50,
     "grapes":1.90,
     "lemon":1.80,

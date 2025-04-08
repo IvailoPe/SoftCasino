@@ -11,13 +11,13 @@ import initialGameField from "./gameInitialState";
 import requester from "../../api/requester";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function ArcadeGameClassic({showAside}) {
-  let showAsideClass = {}
-  if(showAside){
-    showAsideClass.opacity = "0.3"
-    showAsideClass.pointerEvents = "none"
+export default function ArcadeGameClassic({ showAside }) {
+  let showAsideClass = {};
+  if (showAside) {
+    showAsideClass.opacity = "0.3";
+    showAsideClass.pointerEvents = "none";
   }
-  
+
   useRouteGuard();
   const [difficulty, setDifficulty] = useState("easy");
   const [inputBetAmount, setInputBetAmount] = useState("");
@@ -85,7 +85,7 @@ export default function ArcadeGameClassic({showAside}) {
             onChange={(e) => {
               if (!isNaN(Number(e.currentTarget.value))) {
                 if (
-                  Number(e.currentTarget.value) < money &&
+                  Number(e.currentTarget.value) <= money &&
                   Number(e.currentTarget.value) > 0
                 ) {
                   if (e.currentTarget.value === "") {

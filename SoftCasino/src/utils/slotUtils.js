@@ -4,7 +4,7 @@ import styles from "../layouts/Slot-game-classic/Slot-game-classic-styles.module
 export function randomSymbols(refs) {
     for (let index = 0; index < refs.length; index++) {
         refs[index].current.src = symbolsMapping[Math.floor(Math.random() * 9)]
-        refs[index].current.classList.remove("loserSymbols");
+        refs[index].current.classList.remove(styles.loserSymbols);
     }
 }
 

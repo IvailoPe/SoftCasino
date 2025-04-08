@@ -20,7 +20,7 @@ import requester from "../../api/requester";
 import { useOutletContext } from "react-router";
 import useRouteGuard from "../../hooks/useRouteGuard";
 
-export default function SlotGameClassic({showAside}) {
+export default function SlotGameClassic({ showAside }) {
   let showAsideClass = {};
   if (showAside) {
     showAsideClass.opacity = "0.3";
@@ -30,10 +30,10 @@ export default function SlotGameClassic({showAside}) {
   useRouteGuard();
   const isAuto = useRef(false);
   const isAutoRef = useRef();
-  const {setReset, money} = useOutletContext();
+  const { setReset, money } = useOutletContext();
   const [isAutoBtn, setIsAutoBtn] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [betAmount, setBetAmount] = useState(0.25);
+  const [betAmount, setBetAmount] = useState(1);
   const [inputBetAmount, setInputBetAmount] = useState("");
   const [wonAmount, setWonAmount] = useState(0);
 
@@ -89,8 +89,8 @@ export default function SlotGameClassic({showAside}) {
               <FontAwesomeIcon
                 onClick={() => {
                   setBetAmount((prevBetAmount) => {
-                    if (prevBetAmount > 0.25) {
-                      return prevBetAmount - 0.25;
+                    if (prevBetAmount > 1) {
+                      return prevBetAmount - 1;
                     }
                     return prevBetAmount;
                   });
@@ -103,8 +103,8 @@ export default function SlotGameClassic({showAside}) {
               <FontAwesomeIcon
                 onClick={() => {
                   setBetAmount((prevBetAmount) => {
-                    if (prevBetAmount < 3) {
-                      return prevBetAmount + 0.25;
+                    if (prevBetAmount < 5) {
+                      return prevBetAmount + 1;
                     }
                     return prevBetAmount;
                   });
@@ -123,10 +123,20 @@ export default function SlotGameClassic({showAside}) {
             placeholder="125$"
             className={styles.inputAmount}
             value={inputBetAmount}
-            onChange={(e) => {              
-              if(!isNaN(Number(e.currentTarget.value))){
-                if(Number(e.currentTarget.value) < money){
-                  setInputBetAmount(e.currentTarget.value)
+            onChange={(e) => {
+              if (!isNaN(Number(e.currentTarget.value))) {
+                if (
+                  Number(e.currentTarget.value) <= money &&
+                  Number(e.currentTarget.value) > 0
+                ) {
+                  if (e.currentTarget.value === "") {
+                    setInputBetAmount("");
+                    return;
+                  }
+                  setInputBetAmount(Number(e.currentTarget.value));
+                  return;
+                } else if (e.currentTarget.value === "") {
+                  setInputBetAmount("");
                 }
               }
             }}
@@ -182,37 +192,38 @@ export default function SlotGameClassic({showAside}) {
                   }).then(() => {
                     const wins = determineIfWin(rows);
                     let wonAmountFromGame = 0;
-                    let finalBetAmount
+                    let finalBetAmount;
 
-                    if(inputBetAmount){
-                      finalBetAmount = Number(inputBetAmount)
-                    }
-                    else{
-                      finalBetAmount = Number(betAmount)
+                    if (inputBetAmount) {
+                      finalBetAmount = Number(inputBetAmount);
+                    } else {
+                      finalBetAmount = Number(betAmount);
                     }
 
                     console.log(finalBetAmount);
 
                     wins.forEach((symbol) => {
                       wonAmountFromGame +=
-                        Number(symbolsNameAmountMapping[symbol]) * finalBetAmount +
+                        Number(symbolsNameAmountMapping[symbol]) *
+                          finalBetAmount +
                         finalBetAmount;
                     });
-                  
-                    setWonAmount(Number(wonAmountFromGame.toPrecision(2)));
+
+                    wonAmountFromGame = parseInt(wonAmountFromGame);
+
+                    setWonAmount(wonAmountFromGame);
                     if (wonAmountFromGame !== 0) {
                       requester(
                         "POST",
                         import.meta.env.VITE_API_ADRESS + "/casino/game/1",
-                        { wonAmount: Number(wonAmountFromGame.toPrecision(2)) }
+                        { wonAmount: Number(wonAmountFromGame) }
                       ).then(() => {
                         setReset((prevState) => {
                           return !prevState;
                         });
                         setIsPlaying(false);
                       });
-                    }
-                    else{
+                    } else {
                       requester(
                         "PUT",
                         import.meta.env.VITE_API_ADRESS + "/casino/game/1",
@@ -239,7 +250,7 @@ export default function SlotGameClassic({showAside}) {
               if (isAuto.current && isPlaying === false) {
                 isAutoRef.current = setInterval(() => {
                   if (!isPlaying) {
-                    if(SpinBtnRef.current === null){
+                    if (SpinBtnRef.current === null) {
                       clearInterval(isAutoRef.current);
                       return;
                     }
